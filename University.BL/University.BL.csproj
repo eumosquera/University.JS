@@ -96,6 +96,8 @@
     <Compile Include="Repositories\IGenericRepository.cs" />
     <Compile Include="Repositories\Implements\CourseRepository.cs" />
     <Compile Include="Repositories\Implements\GenericRepository.cs" />
+    <Compile Include="Repositories\Implements\StudentRepository.cs" />
+    <Compile Include="Repositories\IStudentRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
