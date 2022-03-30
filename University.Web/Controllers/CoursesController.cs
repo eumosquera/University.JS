@@ -1,27 +1,39 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using University.BL.Models;
+using University.BL.DTOs;
 using University.BL.Repositories;
 using University.BL.Repositories.Implements;
-
+using AutoMapper;
+using System.Linq;
 
 namespace University.Web.Controllers
 {
     public class CoursesController : Controller
     {
-        private static readonly ICourseRepository courseRepository = new CourseRepository(new UniversityModel());
+        private readonly IMapper mapper = MvcApplication.MapperConfiguration.CreateMapper();
+        private readonly ICourseRepository courseRepository = new CourseRepository(new UniversityModel());
 
         [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
-
+         
         [HttpGet]
         public async Task<ActionResult> IndexJson()
         {
-            var courses = await courseRepository.GetAll();
-            return Json(courses, JsonRequestBehavior.AllowGet);
+            var coursesModel = await courseRepository.GetAll();
+            var coursesDTO = coursesModel.Select(x => mapper.Map<CourseDTO>(x));
+
+            return Json(coursesDTO, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return PartialView( new CourseDTO());
         }
 
 
