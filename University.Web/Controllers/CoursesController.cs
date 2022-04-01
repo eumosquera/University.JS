@@ -6,6 +6,7 @@ using University.BL.Repositories;
 using University.BL.Repositories.Implements;
 using AutoMapper;
 using System.Linq;
+using System;
 
 namespace University.Web.Controllers
 {
@@ -33,9 +34,118 @@ namespace University.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+
+
             return PartialView( new CourseDTO());
-        }
+        }//GET CREATE
+
+        [HttpPost]
+        public async Task<ActionResult> Create(CourseDTO courseDTO)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var courseModel = mapper.Map<Course>(courseDTO);
+                    await courseRepository.Insert(courseModel);
+
+                }
+
+                return Json(new ResponseDTO
+                {
+
+                    Message = "Process done successfull!",
+                    IsSuccess = true
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex )
+            {
+
+                return Json(new ResponseDTO
+                {
+
+                    Message = ex.Message,
+                    IsSuccess = false
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }//POST CREATE
 
 
-    }
-}
+        [HttpGet]
+        public async Task<ActionResult> Edit(int id)
+        {
+
+            var courseModel = await courseRepository.GetById(id);
+            var courseDTO = mapper.Map<CourseDTO>(courseModel);
+
+            return PartialView(courseDTO);
+        }//GET EDIT
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(CourseDTO courseDTO)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var courseModel = mapper.Map<Course>(courseDTO);
+                    await courseRepository.Update(courseModel);
+
+                }
+
+                return Json(new ResponseDTO
+                {
+
+                    Message = "Process done successfull!",
+                    IsSuccess = true
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new ResponseDTO
+                {
+
+                    Message = ex.Message,
+                    IsSuccess = false
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }//POST EDIT
+
+        [HttpGet]
+        public async Task<ActionResult> Delete(int id)
+        {
+
+            try
+            {
+                await courseRepository.Delete(id);
+
+
+                return Json(new ResponseDTO
+                {
+
+                    Message = "Process done successfull!",
+                    IsSuccess = true
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResponseDTO
+                {
+
+                    Message = ex.Message,
+                    IsSuccess = false
+
+                }, JsonRequestBehavior.AllowGet);
+
+            }
+
+        }//DELETE
+
+    } // CONTROLLER
+} // NAME SPACE
