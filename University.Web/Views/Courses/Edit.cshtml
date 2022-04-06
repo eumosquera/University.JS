@@ -52,14 +52,15 @@
            
 
             if (data.IsSuccess) {
-
+                swal("Notification", "Process done successfull!", "success");
                 $("#modalCourses").modal("hide");
                 getCourses();
 
             }
             else {
 
-                $.notify(data.Message, "erros");
+                //$.notify(data.Message, "erros");
+                swal("Notification", data.Message, "error");
             }
 
         }).fail(function (data) {

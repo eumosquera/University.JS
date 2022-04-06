@@ -59,6 +59,7 @@
             console.table(data);
            
             if (data.IsSuccess) {
+                swal("Notification", "Process done successfull!", "success");
 
                 $("#modalInstructors").modal("hide");
                 getInstructors();
@@ -66,7 +67,8 @@
             }
             else {
 
-                $.notify(data.Message, "erros");
+                //$.notify(data.Message, "erros");
+                swal("Notification", data.Message, "error");
             }
 
         }).fail(function (data) {

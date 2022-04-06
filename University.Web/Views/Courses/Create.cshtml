@@ -59,23 +59,23 @@
         $.post("/Courses/Create", formData).done(function (data) {
 
             console.table(data); 
-           // swal("Notification", "Process done successfull!", "success");
+            
 
             if (data.IsSuccess) {
-
+                swal("Notification", "Process done successfull!", "success");
                 $("#modalCourses").modal("hide");
                 getCourses();
 
             }
             else {
 
-                $.notify(data.Message, "erros");
+                swal("Notification", data.Message, "error");
             }
             
         }).fail(function (data) {
 
             console.table(data);
-           // swal("Notification", "Process failure!", "error");
+            swal("Notification", "Process failure!", "error");
         })
 
     }

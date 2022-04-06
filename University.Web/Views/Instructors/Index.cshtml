@@ -68,7 +68,7 @@
                     { title: 'ID', data: 'ID', className: 'd-none' },
                     { title: 'Last Name', data: 'LastName' },
                     { title: 'First Mid Name', data: 'FirstMidName' },
-                    { title: 'Hire Date', data: 'HireDate' },
+                    { title: 'Hire Date', data: 'HireDateFormat' },
                     { title: 'Options', data: null }
                 ],
                 columnDefs: [
@@ -92,7 +92,7 @@
 
             $('#tableInstructors').on('click', 'tbody a.delete', function (data) {
                 let id = $(this).parent().siblings('td')[0].innerText;
-                deleteInstructor (id);
+                deleteInstructor(id);
             });
 
         }).fail(function (data) {
@@ -101,7 +101,7 @@
     }
 
     function deleteInstructor(id) {
-        $.get("/Instructors/Delete/" + id).done(function (data){
+        $.get("/Instructors/Delete/" + id).done(function (data) {
             if (data.IsSuccess) {
                 getInstructors();
             }

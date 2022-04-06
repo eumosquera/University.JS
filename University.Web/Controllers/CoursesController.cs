@@ -2,11 +2,13 @@
 using System.Web.Mvc;
 using University.BL.Models;
 using University.BL.DTOs;
+using University.BL.Controls;
 using University.BL.Repositories;
 using University.BL.Repositories.Implements;
 using AutoMapper;
 using System.Linq;
 using System;
+using Newtonsoft.Json;
 
 namespace University.Web.Controllers
 {
@@ -20,7 +22,7 @@ namespace University.Web.Controllers
         {
             return View();
         }
-         
+
         [HttpGet]
         public async Task<ActionResult> IndexJson()
         {
@@ -28,15 +30,27 @@ namespace University.Web.Controllers
             var coursesDTO = coursesModel.Select(x => mapper.Map<CourseDTO>(x));
 
             return Json(coursesDTO, JsonRequestBehavior.AllowGet);
-        }
+        } //VIEW
 
+        [HttpGet]
+        public async Task<ActionResult> GetCourses()
+        {
+            var coursesModel = await courseRepository.GetAll();
+            var coursesDTO = coursesModel.Select(x => mapper.Map<CourseDTO>(x));
+            var coursesSelect = coursesDTO.Select(x => new SelectControl
+            {
+                Id = x.CourseID,
+                Text = x.Title
+            });
+            return Json(JsonConvert.SerializeObject(coursesSelect), JsonRequestBehavior.AllowGet);
+        } //SELECT2
 
         [HttpGet]
         public ActionResult Create()
         {
 
 
-            return PartialView( new CourseDTO());
+            return PartialView(new CourseDTO());
         }//GET CREATE
 
         [HttpPost]
@@ -59,7 +73,7 @@ namespace University.Web.Controllers
 
                 }, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 return Json(new ResponseDTO

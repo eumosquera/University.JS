@@ -2,6 +2,10 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="col-md-3">
+    <select id="CourseSelect" class="form-control"></select>
+</div>
+<hr />
 
 <!-- Button trigger modal -->
 <button id="create" type="button" class="btn btn-primary">
@@ -35,6 +39,7 @@
 <script>
     $(document).ready(function () {
         getCourses();
+        getCoursesList();
     });
 
     $("#create").click(function () {
@@ -109,6 +114,18 @@
         }).fail(function (data) {
             console.table(data);
         })
+    }
+
+
+    function getCoursesList() {
+        $.get('/Courses/GetCourses', function (data) {
+            $("#CourseSelect").empty();
+            $("#CourseSelect").select2({
+                placeholder: "Seleccione",
+                data: JSON.parse(data)
+            });
+            $("#CourseSelect").val("").trigger("change");
+        });
     }
 
 </script>
