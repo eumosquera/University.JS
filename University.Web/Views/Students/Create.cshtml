@@ -56,10 +56,10 @@
         $.post("/Students/Create", formData).done(function (data) {
 
             console.table(data);
-            swal("Notification", "Process done successfull!", "success");
+            
 
             if (data.IsSuccess) {
-
+                swal("Notification", "Process done successfull!", "success");
                 $("#modalStudents").modal("hide");
                 getStudents();
 
@@ -73,8 +73,9 @@
 
         }).fail(function (data) {
 
+            swal("Notification", "Process failure!", "error");
             console.table(data);
-           // swal("Notification", "Process failure!", "error");
+           
         })
 
     }
