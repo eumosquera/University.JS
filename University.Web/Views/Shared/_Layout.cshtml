@@ -16,7 +16,7 @@
 
     <!-- Site -->
     <link rel="stylesheet" href="~/Content/Site.css">
-    <script src="~/Scripts/Site.js"></script>
+    <!-- <script src="~/Scripts/Site.js"></script> -->
 
     <script type="text/javascript" src="~/Scripts/libs/DataTables/datatables.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Scripts/libs/DataTables/datatables.css" />
@@ -29,51 +29,59 @@
 
     <script type="text/javascript" src="~/Scripts/libs/Notify/notify.js"></script>
 
+    <script type="text/javascript" src="~/Scripts/libs/Morris/morris.js"></script>
+    <script type="text/javascript" src="~/Scripts/libs/Morris/morris.css"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+
 </head>
-<body>
-    <div class="d-flex" id="wrapper">
-        <!-- ============================================================== -->
-        <!-- Sidebar -->
-        <!-- ============================================================== -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">
-                <img src="~/Assets/angular-icon.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-                University
-            </div>
-            <div class="list-group list-group-flush">
-
-                @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
-                @Html.ActionLink("About", "About", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
-                @Html.ActionLink("Contact", "Contact", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
-                @Html.ActionLink("Courses", "Index", "Courses", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
-                @Html.ActionLink("Students", "Index", "Students", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
-                @Html.ActionLink("Instructors", "Index", "Instructors", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
-
-            </div>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- ============================================================== -->
+    <!-- Sidebar -->
+    <!-- ============================================================== -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">
+            <img src="~/Assets/angular-icon.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            University
         </div>
-        <!-- ============================================================== -->
-        <!-- End Sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page Content -->
-        <!-- ============================================================== -->
-        <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <i class="fas fa-align-justify" id="menu-toggle"></i>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="list-group list-group-flush">
 
-                </div>
-            </nav>
-            <div class="container-fluid">
-                @RenderBody()
-            </div>
+            @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+            @Html.ActionLink("About", "About", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+            @Html.ActionLink("Contact", "Contact", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+            @Html.ActionLink("Courses", "Index", "Courses", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+            @Html.ActionLink("Students", "Index", "Students", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+            @Html.ActionLink("Instructors", "Index", "Instructors", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+            @Html.ActionLink("OfficeAssignments", "Index", "OfficeAssignments", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+            @Html.ActionLink("Departments", "Index", "Departments", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+            @Html.ActionLink("Donut", "Donut", "Dashboard", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+            @Html.ActionLink("Bar", "Bar", "Dashboard", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page Content -->
-        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page Content -->
+    <!-- ============================================================== -->
+    <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <i class="fas fa-align-justify" id="menu-toggle"></i>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            </div>
+        </nav>
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page Content -->
+    <!-- ============================================================== -->
     </div>
 
     <!-- ============================================================== -->
@@ -87,5 +95,5 @@
     </script>
 
     @RenderSection("scripts", required: false)
-</body>
+    </body>
 </html>

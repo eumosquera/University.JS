@@ -7,7 +7,7 @@ using University.BL.Models;
 
 namespace University.BL.Repositories.Implements
 {
-    internal class OfficeAssignmentRepository : GenericRepository<OfficeAssignment>, IOfficeAssignmentRepository
+    public class OfficeAssignmentRepository : GenericRepository<OfficeAssignment>, IOfficeAssignmentRepository
     {
         public OfficeAssignmentRepository(UniversityModel universityModel) : base(universityModel)
         {

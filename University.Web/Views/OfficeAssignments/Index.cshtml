@@ -2,25 +2,24 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Students</h2>
+<h2>OfficeAssignments</h2>
 <!-- Button trigger modal -->
 <button id="create" type="button" class="btn btn-primary">
-    New Student
+    New
 </button>
 <hr />
-
-<div id="rowStudents">
-    <div id="divStudents">
-        <table id="tableStudents" class="table table-bordered" style="width:100%"></table>
+<div id="rowOfficeAssignments">
+    <div id="divOfficeAssignments">
+        <table id="tableOfficeAssignments" class="table table-bordered" style="width:100%"></table>
     </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modalStudents" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalOfficeAssignments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Students</h5>
+                <h5 class="modal-title" id="exampleModalLabel">OfficeAssignments</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -33,50 +32,46 @@
     </div>
 </div>
 
-<!--Java Script-->
 <script>
     $(document).ready(function () {
-        getStudents();
+        getOfficeAssignments();
+        
     });
 
     $("#create").click(function () {
-        $("#modalStudents .modal-body", this).empty();
-        $("#modalStudents .modal-body").load("/Students/Create");
-        $("#modalStudents").modal("show");
+        $("#modalOfficeAssignments .modal-body", this).empty();
+        $("#modalOfficeAssignments .modal-body").load("/OfficeAssignments/Create");
+        $("#modalOfficeAssignments").modal("show");
     });
 
-    function getStudents() {
-        var $row = $('#rowStudents');
-        $('#divStudents').remove();
+    function getOfficeAssignments() {
+        var $row = $('#rowOfficeAssignments');
+        $('#divOfficeAssignments').remove();
         var $div = $('<div></div>');
         $div.addClass('table-responsive mb-5');
-        $div.attr({ id: 'divStudents' });
-        $div.addClass('divStudents mb-5');
+        $div.attr({ id: 'divOfficeAssignments' });
+        $div.addClass('divOfficeAssignments mb-5');
         var $table = $("<table></table>");
         $table.addClass('table table-bordered display text-center');
-        $table.attr({ id: 'tableStudents', width: '100%' });
+        $table.attr({ id: 'tableOfficeAssignments', width: '100%' });
         $div.append($table);
         $row.append($div);
 
-        $.get('/Students/IndexJson').done(function (data) {
+        $.get('/OfficeAssignments/IndexJson').done(function (data) {
             $.notify("Load data", "info");
             console.table(data);
-            table = $('#tableStudents').DataTable({
+            table = $('#tableOfficeAssignments').DataTable({
                 data: data,
-                "iDisplayLength": 50,
+                "iDisplayLength": 25,
                 "order": [[0, "desc"]],
                 columns: [
-                    { title: 'ID', data: 'ID', className: 'd-none' },
-                    { title: 'Last Name', data: 'LastName' },
-                    { title: 'First Mid Name', data: 'FirstMidName' },
-                    { title: 'Enrollment Date', data: 'EnrollmentDateFormat' },
+                    { title: 'ID', data: 'InstructorID', className: 'd-none' },
+                    { title: 'Location', data: 'Location' },
                     { title: 'Options', data: null }
-                    //{ title: 'Full Name', data: 'FullName' },
-                    
                 ],
                 columnDefs: [
                     {
-                        targets: 4,
+                        targets: 2,
                         render: function (data, type, row) {
                             return '<a href="javascript:void" class="btn btn-warning edit">Edit</a>' +
                                 '<a href="javascript:void" class="btn btn-danger delete">Delete</a>';
@@ -85,17 +80,17 @@
                 ]
             });
 
-            $('#tableStudents').on('click', 'tbody a.edit', function (e) {
+            $('#tableOfficeAssignments').on('click', 'tbody a.edit', function (e) {
                 let id = $(this).parent().siblings('td')[0].innerText;
 
-                $('#modalStudents .modal-body', this).empty();
-                $('#modalStudents .modal-body').load('/Students/Edit/' + id);
-                $("#modalStudents").modal("show");
+                $('#modalOfficeAssignments .modal-body', this).empty();
+                $('#modalOfficeAssignments .modal-body').load('/OfficeAssigments/Edit/' + id);
+                $("#modalOfficeAssignments").modal("show");
             });
 
-            $('#tableStudents').on('click', 'tbody a.delete', function (data) {
+            $('#tableOfficeAssignments').on('click', 'tbody a.delete', function (data) {
                 let id = $(this).parent().siblings('td')[0].innerText;
-                deleteStudent (id);
+                deleteOfficeAssignments (id);
             });
 
         }).fail(function (data) {
@@ -103,10 +98,10 @@
         });
     }
 
-    function deleteStudent(id) {
-        $.get("/Students/Delete/" + id).done(function (data){
+    function deleteOfficeAssignments(id) {
+        $.get("/OfficeAssignments/Delete/" + id).done(function (data){
             if (data.IsSuccess) {
-                getStudents();
+                getOfficeAssignments();
             }
             else {
                 $.notify(data.Message, "error");
@@ -115,6 +110,4 @@
             console.table(data);
         })
     }
-
 </script>
-
