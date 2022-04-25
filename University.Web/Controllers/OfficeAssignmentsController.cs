@@ -16,6 +16,7 @@ namespace University.Web.Controllers
     {
         private readonly IMapper mapper = MvcApplication.MapperConfiguration.CreateMapper();
         private readonly IOfficeAssignmentRepository officeAssignmentRepository = new OfficeAssignmentRepository(new UniversityModel());
+        private readonly IInstructorRepository instructorRepository = new InstructorRepository(new UniversityModel());
 
         [HttpGet]
         public ActionResult Index()
@@ -32,21 +33,21 @@ namespace University.Web.Controllers
             return Json(officeAssignmentDTO, JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<ActionResult> GetInstructorID()
-        {
-            var officeAssignmentModel = await officeAssignmentRepository.GetAll();
-            var officeAssignmentDTO = officeAssignmentModel.Select(x => mapper.Map<InstructorDTO>(x));
-            var officeAssignmentsSelect = officeAssignmentDTO.Select(x => new SelectControl
+        public async Task<ActionResult> GetInstructorID() //implentar en la vista create
+        { // está buena solo implementar en la vista create
+            var instructorsModel = await instructorRepository.GetAll();
+            var instructorsDTO = instructorsModel.Select(x => mapper.Map<InstructorDTO>(x));
+            var InstructorSelect = instructorsDTO.Select(x => new SelectControl
             {
                 Id = x.ID,
                 Text = x.FullName
             });
-            return Json(JsonConvert.SerializeObject(officeAssignmentsSelect), JsonRequestBehavior.AllowGet);
+            return Json(JsonConvert.SerializeObject(InstructorSelect), JsonRequestBehavior.AllowGet);
         } //SELECT2
 
         [HttpGet]
         public ActionResult Create()
-        {
+        { 
             return PartialView(new OfficeAssignmentDTO());
         }//GET CREATE
 

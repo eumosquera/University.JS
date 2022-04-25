@@ -43,7 +43,7 @@
         $("#modalOfficeAssignments .modal-body").load("/OfficeAssignments/Create");
         $("#modalOfficeAssignments").modal("show");
     });
-
+     
     function getOfficeAssignments() {
         var $row = $('#rowOfficeAssignments');
         $('#divOfficeAssignments').remove();
@@ -84,7 +84,7 @@
                 let id = $(this).parent().siblings('td')[0].innerText;
 
                 $('#modalOfficeAssignments .modal-body', this).empty();
-                $('#modalOfficeAssignments .modal-body').load('/OfficeAssigments/Edit/' + id);
+                $('#modalOfficeAssignments .modal-body').load('/OfficeAssignments/Edit' + id);
                 $("#modalOfficeAssignments").modal("show");
             });
 

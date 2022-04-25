@@ -42,7 +42,7 @@ namespace ConsoleApp1
 
             //Mostrar en consola los 3 libros con más ventas
             var salesTop = books.OrderByDescending(x => x.Sales).Take(3).ToList();
-            Console.WriteLine("3 best selling books");
+            Console.WriteLine("----3 best selling books----");
             foreach (var item in salesTop)
             {
 
@@ -52,7 +52,7 @@ namespace ConsoleApp1
 
             //Mostrar en consola los 3 libros con menos ventas.
             var salesDown = books.OrderBy(x => x.Sales).Take(3).ToList();
-            Console.WriteLine("3 least sold books");
+            Console.WriteLine("----3 least sold books----");
             foreach (var item in salesDown)
             {
 
@@ -62,20 +62,18 @@ namespace ConsoleApp1
 
 
             //Mostrar en consola el autor con más libros publicados.
-            var autorTop = from bookN in books
-                           join authorN in authors
-                           on bookN.AuthorId equals authorN.AuthorId
-                           where bookN.AuthorId == authorN.AuthorId
-                           select bookN;
+            var ex3 = from b in books
+                      join a in authors on b.AuthorId equals a.AuthorId
+                      group a by (a.AuthorId, a.Name) into query
+                      orderby query.Count() descending
+                      select query;
+            Console.WriteLine("----autor more book public----");
+            var resultex3 = ex3.FirstOrDefault();
 
-            Console.WriteLine("---Author with more books---");
-            foreach (var item in autorTop)
-            { //Corregir
-                Console.WriteLine($" {item.Title} - {item.AuthorId}");
-            }
+            Console.WriteLine($"{resultex3.Key.AuthorId} -{resultex3.Key.Name} - {resultex3.Count()}");
 
             //Mostrar en consola los libros publicados hace menos de 50 años.
-            var book50 = books.Where(x => x.PublicationDate >= 1972).ToList();
+            var book50 = books.Where(x => x.PublicationDate > DateTime.Now.AddYears(-50).Year).ToList();
             Console.WriteLine("---Books less than 50y ago---");
             foreach (var item in book50)
             {
