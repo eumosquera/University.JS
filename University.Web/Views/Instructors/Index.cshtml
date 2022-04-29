@@ -40,7 +40,7 @@
 
     $("#create").click(function () {
         $("#modalInstructors .modal-body", this).empty();
-        $("#modalInstructors .modal-body").load("/Instructors/Create");
+        $("#modalInstructors .modal-body").load(urlBase +"/Instructors/Create");
         $("#modalInstructors").modal("show");
     });
 
@@ -57,7 +57,7 @@
         $div.append($table);
         $row.append($div);
 
-        $.get('/Instructors/IndexJson').done(function (data) {
+        $.get(urlBase +'/Instructors/IndexJson').done(function (data) {
             $.notify("Load data", "info");
             console.table(data);
             table = $('#tableInstructors').DataTable({
@@ -86,7 +86,7 @@
                 let id = $(this).parent().siblings('td')[0].innerText;
 
                 $('#modalInstructors .modal-body', this).empty();
-                $('#modalInstructors .modal-body').load('/Instructors/Edit/' + id);
+                $('#modalInstructors .modal-body').load(urlBase +'/Instructors/Edit/' + id);
                 $("#modalInstructors").modal("show");
             });
 
@@ -101,7 +101,7 @@
     }
 
     function deleteInstructor(id) {
-        $.get("/Instructors/Delete/" + id).done(function (data) {
+        $.get(urlBase +"/Instructors/Delete/" + id).done(function (data) {
             if (data.IsSuccess) {
                 getInstructors();
             }

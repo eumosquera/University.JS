@@ -56,7 +56,7 @@
         var formData = $("#formCreateCourse").serialize();
 
          //ruta para enviar datos
-        $.post("/Courses/Create", formData).done(function (data) {
+        $.post(urlBase +"/Courses/Create", formData).done(function (data) {
 
             console.table(data); 
             

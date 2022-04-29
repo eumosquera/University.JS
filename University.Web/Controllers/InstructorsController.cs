@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using AutoMapper;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using University.BL.Models;
 using University.BL.DTOs;
+using University.BL.Models;
 using University.BL.Repositories;
 using University.BL.Repositories.Implements;
-using AutoMapper;
-using System.Linq;
-using System;
 
 namespace University.Web.Controllers
 {

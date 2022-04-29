@@ -27,7 +27,7 @@ namespace University.BL.DTOs
         {
             get
             {
-                return EnrollmentDate.ToString("yyyy/mm/dd");
+                return EnrollmentDate.ToString("yyyy/dd/mm");
             }
         }
     }

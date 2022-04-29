@@ -32,5 +32,7 @@ namespace University.BL.Models
         public virtual DbSet<Instructor> Instructor { get; set; }
         public virtual DbSet<OfficeAssignment> OfficeAssignment { get; set; }
         public virtual DbSet<Student> Student { get; set; }
+
+        public System.Data.Entity.DbSet<University.BL.DTOs.InstructorDTO> InstructorDTOes { get; set; }
     }
 }

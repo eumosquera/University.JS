@@ -19,4 +19,4 @@ namespace University.Web
             MapperConfiguration = MapperConfig.MapperConfiguration();
         }
     }
-} 
+}

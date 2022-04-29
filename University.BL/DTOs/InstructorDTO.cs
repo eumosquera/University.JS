@@ -24,7 +24,7 @@ namespace University.BL.DTOs
         {
             get
             {
-                return HireDate.ToString("yyyy-mm-dd");
+                return HireDate.ToString("yyyy-dd-mm");
             }
         }
     }

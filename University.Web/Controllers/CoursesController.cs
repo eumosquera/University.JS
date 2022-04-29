@@ -1,14 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using AutoMapper;
+using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using University.BL.Models;
-using University.BL.DTOs;
 using University.BL.Controls;
+using University.BL.DTOs;
+using University.BL.Models;
 using University.BL.Repositories;
 using University.BL.Repositories.Implements;
-using AutoMapper;
-using System.Linq;
-using System;
-using Newtonsoft.Json;
 
 namespace University.Web.Controllers
 {
@@ -28,6 +28,7 @@ namespace University.Web.Controllers
         {
             var coursesModel = await courseRepository.GetAll();
             var coursesDTO = coursesModel.Select(x => mapper.Map<CourseDTO>(x));
+            //var courses = courseRepository.GetCoursesByInstructor();
 
             return Json(coursesDTO, JsonRequestBehavior.AllowGet);
         } //VIEW
