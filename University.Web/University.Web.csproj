@@ -261,11 +261,12 @@
     <Content Include="Views\OfficeAssignments\Index.cshtml" />
     <Content Include="Views\OfficeAssignments\Create.cshtml" />
     <Content Include="Views\OfficeAssignments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Departments\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -30,7 +30,7 @@
             Morris.Donut({
                 element: 'graph',
                 data: JSON.parse(data),
-                formatter: function (x) { return x }
+                formatter: function (x) { return x + ""}
             }).on('click', function (i, row) {
                 console.log(i, row);
             });

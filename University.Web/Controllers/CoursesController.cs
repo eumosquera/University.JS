@@ -31,7 +31,7 @@ namespace University.Web.Controllers
             //var courses = courseRepository.GetCoursesByInstructor();
 
             return Json(coursesDTO, JsonRequestBehavior.AllowGet);
-        } //VIEW
+        }
 
         [HttpGet]
         public async Task<ActionResult> GetCourses()
