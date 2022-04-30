@@ -48,7 +48,7 @@ namespace University.Web.Controllers
                 Text = x.FullName
             });
             return Json(JsonConvert.SerializeObject(InstructorSelect), JsonRequestBehavior.AllowGet);
-        } //SELECT2
+        } //Listas de instructores
 
         #endregion
 
@@ -84,6 +84,83 @@ namespace University.Web.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
+
+
+        [HttpGet]
+        public async Task<ActionResult> Edit(int id)
+        {
+
+            var departmentModel = await departmentRepository.GetById(id);
+            var departmentDTO = mapper.Map<DepartmentDTO>(departmentModel);
+
+            return PartialView(departmentDTO);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(DepartmentDTO departmentDTO)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var departmentModel = mapper.Map<Department>(departmentDTO);
+                    await departmentRepository.Update(departmentModel);
+
+                }
+
+                return Json(new ResponseDTO
+                {
+
+                    Message = "Process done successfull!",
+                    IsSuccess = true
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new ResponseDTO
+                {
+
+                    Message = ex.Message,
+                    IsSuccess = false
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult> Delete(int id)
+        {
+
+            try
+            {
+                await departmentRepository.Delete(id);
+
+
+                return Json(new ResponseDTO
+                {
+
+                    Message = "Process done successfull!",
+                    IsSuccess = true
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResponseDTO
+                {
+
+                    Message = ex.Message,
+                    IsSuccess = false
+
+                }, JsonRequestBehavior.AllowGet);
+
+            }
+
+        }
+
 
     }
 }

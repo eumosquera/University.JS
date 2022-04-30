@@ -11,5 +11,7 @@ namespace University.BL.Repositories
         IEnumerable<Course> GetCoursesByInstructor(int InstructorID);
         IEnumerable<DonutExampleDTO> GetReport();
         IEnumerable<DonutExampleDTO> GetReport2();
+        IEnumerable<DonutExampleDTO> GetReport3();
+        IEnumerable<DonutExampleDTO> GetReport4();
     }
 }

@@ -1,9 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Departments";
 }
 
-<h2>Index</h2>
+<h2>Departments</h2>
 <!-- Trigger modal -->
 <button id="create" type="button" class="btn btn-primary">
     New
@@ -88,8 +88,8 @@
                 let id = $(this).parent().siblings('td')[0].innerText;
 
                 $('#modalDepartments .modal-body', this).empty();
-                $('#modalStudents .modal-body').load(urlBase +'/Departments/Edit/' + id);
-                $("#modalStudents").modal("show");
+                $('#modalDepartments .modal-body').load(urlBase +'/Departments/Edit/' + id);
+                $("#modalDepartments").modal("show");
             });
 
             $('#tableDepartments').on('click', 'tbody a.delete', function (data) {

@@ -31,6 +31,12 @@ namespace University.Web.Controllers
                 case 2:
                     data = courseRepository.GetReport2().ToList(); ;
                     break;
+                case 3:
+                    data = courseRepository.GetReport3().ToList(); ;
+                    break;
+                case 4:
+                    data = courseRepository.GetReport3().ToList(); ;
+                    break;
                 default:
                     break;
             }
@@ -38,22 +44,8 @@ namespace University.Web.Controllers
             var dataJson = JsonConvert.SerializeObject(data);
             return Json(dataJson, JsonRequestBehavior.AllowGet);
         }
-
-        private List<DonutExampleDTO> Report1()
-        {
-            var data = new List<DonutExampleDTO>();
-            data.Add(new DonutExampleDTO { Value = 70, Label = "Java" });
-            data.Add(new DonutExampleDTO { Value = 30, Label = "Angular" });
-            return data;
-        }
-        private List<DonutExampleDTO> Report2()
-        {
-            var data = new List<DonutExampleDTO>();
-            data.Add(new DonutExampleDTO { Value = 70, Label = "React" });
-            data.Add(new DonutExampleDTO { Value = 30, Label = "Node" });
-            return data;
-        }
-
+                
+       
         public ActionResult Bar()
         {
             return View();

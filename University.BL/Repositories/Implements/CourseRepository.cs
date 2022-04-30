@@ -56,6 +56,40 @@ namespace University.BL.Repositories.Implements
             });
             return report;
         }
+        public IEnumerable<DonutExampleDTO> GetReport3()
+        {
+            var result = from _course in universityModel.CourseInstructor
+                         join _instru in universityModel.Instructor
+                         on _course.InstructorID equals _instru.ID
+                         group _instru by _instru.LastName into query
+                         select query;
+
+            var report = result.Select(x => new DonutExampleDTO
+            {
+                Label = x.Key,
+                Value = x.Count()
+
+            });
+            return report;
+        }
+
+        public IEnumerable<DonutExampleDTO> GetReport4()
+        {
+            var result = from _course in universityModel.Course
+                         join _instru in universityModel.CourseInstructor
+                         on _course.CourseID equals _instru.ID
+                         group _course by _course.Title into query
+                         select query;
+
+            var report = result.Select(x => new DonutExampleDTO
+            {
+                Label = x.Key,
+                Value = x.Count()
+
+            });
+            return report;
+        }
+
         public async new Task Delete(int id)
         {
 
