@@ -55,6 +55,7 @@ namespace University.Web.Controllers
         }//GET CREATE
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CourseDTO courseDTO)
         {
             try
@@ -64,6 +65,10 @@ namespace University.Web.Controllers
                     var courseModel = mapper.Map<Course>(courseDTO);
                     await courseRepository.Insert(courseModel);
 
+                }
+                else
+                {
+                    throw new Exception("Missing data required!");
                 }
 
                 return Json(new ResponseDTO
@@ -99,6 +104,7 @@ namespace University.Web.Controllers
         }//GET EDIT
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(CourseDTO courseDTO)
         {
             try

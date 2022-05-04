@@ -76,8 +76,8 @@ namespace University.BL.Repositories.Implements
         public IEnumerable<DonutExampleDTO> GetReport4()
         {
             var result = from _course in universityModel.Course
-                         join _instru in universityModel.CourseInstructor
-                         on _course.CourseID equals _instru.ID
+                         join _instruc in universityModel.CourseInstructor
+                         on _course.CourseID equals _instruc.CourseID
                          group _course by _course.Title into query
                          select query;
 

@@ -41,43 +41,6 @@
 }
 
 <!--Code Java script-->
-<script>
-    $("#create-save").click(function () {
-
-        createCourse();
-    })
-
-    function createCourse(){
-
-        /*ATRAPAR VALOR POR VALOR
-        var courseID = document.getElementById("CourseID");
-         var courseID = $("#CourseID").val();
-         */
-        var formData = $("#formCreateCourse").serialize();
-
-         //ruta para enviar datos
-        $.post(urlBase +"/Courses/Create", formData).done(function (data) {
-
-            console.table(data); 
-            
-
-            if (data.IsSuccess) {
-                swal("Notification", "Process done successfull!", "success");
-                $("#modalCourses").modal("hide");
-                getCourses();
-
-            }
-            else {
-
-                swal("Notification", data.Message, "error");
-            }
-            
-        }).fail(function (data) {
-
-            console.table(data);
-            swal("Notification", "Process failure!", "error");
-        })
-
-    }
-
+<script 
+        src="~/Scripts/Views/Courses/Create.js">
 </script>

@@ -53,6 +53,7 @@ namespace University.Web.Controllers
         #endregion
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(DepartmentDTO departmentDTO)
         {
             try
@@ -97,6 +98,7 @@ namespace University.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(DepartmentDTO departmentDTO)
         {
             try

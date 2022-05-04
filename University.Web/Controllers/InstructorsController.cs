@@ -39,6 +39,7 @@ namespace University.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(InstructorDTO instructorDTO)
         {
             try
@@ -82,6 +83,7 @@ namespace University.Web.Controllers
         }//GET EDIT
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(InstructorDTO instructorDTO)
         {
             try

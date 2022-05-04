@@ -231,6 +231,23 @@
     <Content Include="Scripts\libs\SeweetAlert\sweetalert.js" />
     <Content Include="Scripts\libs\SeweetAlert\sweetalert.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Views\Courses\Create.js" />
+    <Content Include="Scripts\Views\Courses\Edit.js" />
+    <Content Include="Scripts\Views\Courses\Index.js" />
+    <Content Include="Scripts\Views\Dashboard\Bar.js" />
+    <Content Include="Scripts\Views\Dashboard\Donut.js" />
+    <Content Include="Scripts\Views\Departments\Create.js" />
+    <Content Include="Scripts\Views\Departments\Edit.js" />
+    <Content Include="Scripts\Views\Departments\Index.js" />
+    <Content Include="Scripts\Views\Instructors\Create.js" />
+    <Content Include="Scripts\Views\Instructors\Edit.js" />
+    <Content Include="Scripts\Views\Instructors\Index.js" />
+    <Content Include="Scripts\Views\OfficeAssignments\Create.js" />
+    <Content Include="Scripts\Views\OfficeAssignments\Edit.js" />
+    <Content Include="Scripts\Views\OfficeAssignments\Index.js" />
+    <Content Include="Scripts\Views\Students\Create.js" />
+    <Content Include="Scripts\Views\Students\Edit.js" />
+    <Content Include="Scripts\Views\Students\Index.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

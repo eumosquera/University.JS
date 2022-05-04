@@ -34,50 +34,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input id="create-save" type="button" value="Create" class="btn btn-primary" />
+                <input id="create-save" type="button" Value="Create" class="btn btn-primary"/>
             </div>
         </div>
     </div>
 }
 
 
-<script>
-    $("#create-save").click(function () {
-
-        createStudent();
-    })
-
-    function createStudent(){
-
-        
-        var formData = $("#formCreateStudent").serialize();
-
-         //ruta para enviar datos
-        $.post(urlBase +"/Students/Create", formData).done(function (data) {
-
-            console.table(data);
-            
-
-            if (data.IsSuccess) {
-                swal("Notification", "Process done successfull!", "success");
-                $("#modalStudents").modal("hide");
-                getStudents();
-
-            }
-            else {
-
-                //$.notify(data.Message, "erros");
-                swal("Notification", data.Message, "error");
-
-            }
-
-        }).fail(function (data) {
-
-            swal("Notification", "Process failure!", "error");
-            console.table(data);
-           
-        })
-
-    }
-
+<script 
+        src="~/Scripts/Views/Students/Create.js" type="text/javascript">
 </script>
